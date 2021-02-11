@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="com.springlec.whyn.areview.aReViewDto">
+	
+
+		<select id="reviewManagementList" resultType="com.springlec.whyn.areview.aReViewDto">
+			SELECT RENO , REUSERID, RETITLE, RECONTENT , REINSERTDATE FROM REVIEW 
+		</select>
+		
+		<select id="reviewSearch" resultType="com.springlec.whyn.areview.aReViewDto">
+			SELECT RENO , REUSERID, RETITLE, RECONTENT,REINSERTDATE FROM REVIEW where #{param1} like '%#{param2}%'
+		</select>
+		
+		<delete id="reviewDelete">
+			DELETE FROM REVIEW  WHERE RENO = #{param1}
+		</delete>
+		
+		<select id="reviewContentView" resultType="com.springlec.whyn.areview.aReViewDto">
+			SELECT * FROM REVIEW WHERE RENO = #{param1}
+		</select>
+		
+		<select id="reviewViewRowCount" resultType="com.springlec.whyn.areview.aReViewDto">
+			SELECT COUNT(*) FROM REVIEW
+		</select>
+		
+		<update id="reviewCount">
+			UPDATE REVIEW SET REVIEWCOUNT = REVIEWCOUNT + 1 WHERE RENO = #{param1} 
+		</update>
+		
+		<select id="reviewSelect" resultType="com.springlec.whyn.areview.aReViewDto">
+			SELECT REVIEWCOUNT FROM REVIEW WHERE RENO = #{param1} 
+		</select>
+		
+		<select id="newReview" resultType="com.springlec.whyn.areview.aReViewDto">
+			SELECT RENO, REUSERID, RETITLE, RECONTENT, REINSERTDATE FROM REVIEW WHERE REVIEWCOUNT = 0
+		</select>
+		
+		<select id="newReviewContentView" resultType="com.springlec.whyn.areview.aReViewDto">
+			SELECT * FROM REVIEW WHERE REVIEWCOUNT = 0
+		</select>
+		
+		<select id="todayReviewContentView" resultType="com.springlec.whyn.areview.aReViewDto">
+			SELECT * FROM REVIEW WHERE DATE_FORMAT(REINSERTDATE, "%Y-%M-%D") = CURDATE()
+		</select>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</mapper>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.springlec.whyn.acounseling.AcounselingDao">
+ 
+ 
+ <select id="counselingManagementList" resultType="com.springlec.whyn.acounseling.AcounselingDto">
+ SELECT CNO , CUSERNAME, CUSERID, CTITLE , CCONTENT, CDATE FROM COUNSELING
+ </select>
+ 
+ <select id="counselingSearch" resultType="com.springlec.whyn.acounseling.AcounselingDto">
+ SELECT CNO , CUSERNAME, CUSERID, CTITLE,CCONTENT, CDATE FROM COUNSELING WHERE ${param1} LIKE CONCAT('%',#{param2},'%')
+ </select>
+ 
+ <delete id="counselingDelete">
+ DELETE  FROM COUNSELING  WHERE CNO = #{param1}
+ </delete>
+ 
+ <select id="counselingContentView" resultType="com.springlec.whyn.acounseling.AcounselingDto">
+ SELECT * FROM COUNSELING WHERE CNO= #{param1}
+ </select>
+
+ <select id="counselingViewRowCount" resultType="int">
+ SELECT COUNT(*) FROM COUNSELING 
+ </select>
+
+ <update id="cviewcount">
+ UPDATE COUNSELING SET CVIEWCOUNT = CVIEWCOUNT + 1 WHERE CNO = #{param1}
+ </update>
+
+ <select id="cviewSelect" resultType="int">
+ SELECT CVIEWCOUNT FROM COUNSELING WHERE CNO = #{param1}
+ </select>
+ 
+ <select id="newCounseling" resultType="com.springlec.whyn.acounseling.AcounselingDto">
+ SELECT CNO , CUSERNAME, CUSERID, CTITLE,CCONTENT, CDATE , CVIEWCOUNT, CANSWER FROM COUNSELING WHERE CANSWER IS NULL 
+ </select>
+ 
+ <select id="todayContentView" resultType="com.springlec.whyn.acounseling.AcounselingDto">
+ SELECT * FROM COUNSELING WHERE CNO= #{param1}
+ </select>
+ 
+ <update id="counselingAnswer">
+ UPDATE COUNSELING SET CANSWER = #{param1} WHERE CNO= #{param2}
+ </update>
+ 
+ <select id="answer" resultType="String">
+ SELECT CANSWER FROM COUNSELING WHERE CNO= #{param1}
+ </select>
+ </mapper>

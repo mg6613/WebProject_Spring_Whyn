@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.springlec.whyn.winelist.WineListIDao">
+	
+	<!-- 와인리스트 띄우기 -->
+	<select id="listDao" resultType="com.springlec.whyn.winelist.WineListDto">
+		SELECT * FROM PRODUCTLIST ORDER BY PNO DESC
+	</select>
+	
+	<!-- 와인리스트 작성 -->
+	<insert id="writeDao">
+		INSERT INTO PRODUCTLIST (PNAME, PCOUNT, PCOUNTRY, PCOLOR, PTEXT, PCONTENT) VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},#{param6})
+	</insert> 
+	
+	<!--  와인리스트 내용보기 -->
+	<select id="contentDao" resultType="com.springlec.whyn.winelist.WineListDto">
+		SELECT * FROM PRODUCTLIST WHERE PNO = #{param1} 
+	</select>
+	
+	<!-- 와인리스트 수정 -->
+	<update id="modifyDao">
+		UPDATE PRODUCTLIST SET PNO = #{param1}, PNAME = #{param2}, PCOUNT = #{param3}, PCOUNTRY = #{param4}, PCOLOR = #{param5}, PTEXT = #{param6}, PCONTENT = #{param7} WHERE PNO = #{param8}
+	</update>
+	
+	<!-- 와인리스트 삭제 -->
+	<insert id="deleteDao">
+		DELETE FROM PRODUCTLIST WHERE PNO = #{param1} 
+	</insert>
+	
+	<!-- 와인리스트 페이징 -->
+	<select id="wineListViewRowCount" resultType="int">
+		SELECT COUNT(*) FROM PRODUCTLIST
+	</select>
+	
+</mapper>

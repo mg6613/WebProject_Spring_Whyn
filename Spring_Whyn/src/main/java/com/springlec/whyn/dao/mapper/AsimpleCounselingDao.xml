@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    
+ <mapper namespace="com.springlec.whyn.asimplecounseling.AsimpleCounselingDao">
+ <select id="simpleConList" resultType="com.springlec.whyn.asimplecounseling.AsimpleCounselingDto">
+ SELECT *  FROM SIMPLECON
+ </select>
+ 
+ <select id="simpleContentView" resultType="com.springlec.whyn.asimplecounseling.AsimpleCounselingDto">
+ SELECT * FROM SIMPLECON WHERE SCNO =#{param1}
+ </select>
+ 
+ <update id="scviewcount">
+ UPDATE SIMPLECON SET SVIEWCOUNT = SVIEWCOUNT + 1 WHERE SCNO=#{param1}
+ </update>
+ 
+ <select id="sviewSelect" resultType="int">
+ SELECT SVIEWCOUNT FROM SIMPLECON WHERE NNO=#{param1}
+ </select>
+ 
+ <select id="newSimpleList" resultType="com.springlec.whyn.asimplecounseling.AsimpleCounselingDto">
+ SELECT SCNO ,SCTYPE,SCUSERINFO,SDATE FROM SIMPLECON WHERE SVIEWCOUNT = 0 
+ </select>
+ 
+ <delete id="simpleDelete">
+ DELETE  FROM SIMPLECON  WHERE SCNO = #{param1}
+ </delete>
+ 
+ </mapper>

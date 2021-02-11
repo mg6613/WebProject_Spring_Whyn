@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springlec.whyn.notice.NoticeIDao">
+	<select id="noticeManagementList" resultType="com.springlec.whyn.notice.NoticeDto">
+		SELECT * FROM NOTICE
+	</select>
+
+	<delete id="noticeDelete">
+		DELETE  FROM NOTICE  WHERE NNO =  #{param1}
+	</delete>
+	
+	<insert id="noticeWrite" >
+		INSERT INTO NOTICE (NTITLE,NCONTENT,NINSERTDATE) VALUES (#{param1},#{param2},now())
+	</insert>	
+	
+	<select id="noticeContentView" resultType="com.springlec.whyn.notice.NoticeDto">
+		SELECT * FROM NOTICE WHERE NNO= #{param1}
+	</select>
+
+	<update id="noticeUpdate">
+		UPDATE NOTICE SET NTITLE =#{param2}, NCONTENT =#{param3} WHERE NNO=#{param1}
+	</update>	
+ 	<update id="noticeCount">
+		UPDATE NOTICE SET NVIEWCOUNT = #{param2}+1 WHERE NNO=#{param1}
+	</update>
+	<select id="noticeCountSelect" resultType="int">
+		SELECT NVIEWCOUNT FROM NOTICE WHERE NNO=#{param1}
+	</select>
+	<select id="noticeSearch" parameterType = "String" resultType="com.springlec.whyn.notice.NoticeDto">
+		SELECT* FROM NOTICE WHERE ${param1} LIKE CONCAT('%',#{param2},'%')
+	</select>
+		<select id="noticeViewRowCount" resultType="int">
+		SELECT COUNT(*) FROM NOTICE
+	</select>
+
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="com.springlec.whyn.adelivery.DeliveryIDao">
+	
+		<!-- 매달 5일 -->
+		<select id="fivedate" resultType="com.springlec.whyn.adelivery.DeliveryDto">
+			SELECT SPERIOD,SBOTTLE , STARTDATE, ENDDATE, SPRICE,DADDRESS1,DADDRESS2,DADDRESS3,DUSERNAME,DUSERID,DTEL FROM SUBSCRIBE, DELIVERY WHERE DSUBNO=SSUBNO AND SENDDATE='매달5일' 
+		</select>
+		<!-- 매달 10일 -->
+		<select id="tendate" resultType="com.springlec.whyn.adelivery.DeliveryDto">
+			SELECT SPERIOD,SBOTTLE , STARTDATE, ENDDATE, SPRICE,DADDRESS1,DADDRESS2,DADDRESS3,DUSERNAME,DUSERID,DTEL FROM SUBSCRIBE, DELIVERY WHERE DSUBNO=SSUBNO AND SENDDATE ='매달10일'  
+		</select>
+		<!-- 매달 15일 -->
+		<select id="fifteen" resultType="com.springlec.whyn.adelivery.DeliveryDto">
+			SELECT SPERIOD,SBOTTLE , STARTDATE, ENDDATE, SPRICE,DADDRESS1,DADDRESS2,DADDRESS3,DUSERNAME,DUSERID,DTEL FROM SUBSCRIBE, DELIVERY WHERE DSUBNO=SSUBNO AND SENDDATE='매달15일' 
+		</select>
+		<!-- 매달5일 리스트 클릭시 뷰 -->
+		<select id="fiveContentView" resultType="com.springlec.whyn.adelivery.DeliveryDto">
+			SELECT SPERIOD,SBOTTLE , STARTDATE, ENDDATE, SPRICE,DADDRESS1,DADDRESS2,DADDRESS3,DUSERNAME,DUSERID,DTEL FROM SUBSCRIBE, DELIVERY WHERE DSUBNO = SSUBNO AND DUSERID = #{param1} 
+		</select>
+		
+	</mapper>
