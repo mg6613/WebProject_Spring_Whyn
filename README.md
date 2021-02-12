@@ -1,5 +1,8 @@
 # Wyne_Spring
 
+## 이슈 탭에서 개발 화면을 확인할 수 있습니다.
+https://github.com/mg6613/WebProject_Spring_Whyn/issues/1
+
 ## 패키지 패턴
 
     - ex)// com.springlec.controller.join//  //com.springlec.dao.mapper.join //com.springlec.dao.join//     com.springlec.dto.join
